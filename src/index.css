@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bone: #f2efe6;
+  --color-ink: #193328;
+  --color-forest: #143629;
+  --color-moss: #2b4b3d;
+  --color-lime: #dfff80;
+  --color-sage: #aebcac;
+  --color-terracotta: #c67554;
+  --font-sans: "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+}
+
+:root {
+  font-family: var(--font-sans);
+  color: #193328;
+  background: #f2efe6;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 76px;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+}
+
+button, a, input, select, textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, a {
+  cursor: pointer;
+}
+
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid #c67554;
+  outline-offset: 4px;
+}
+
+::selection {
+  background: #dfff80;
+  color: #143629;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e5e3da;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #87998b;
+  border-radius: 99px;
+  border: 2px solid #e5e3da;
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-[1600px] px-5 sm:px-8 lg:px-12;
+  }
+
+  .section-space {
+    @apply py-24 sm:py-32 lg:py-40;
+  }
+
+  .section-kicker {
+    @apply flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-ink/50;
+  }
+
+  .section-kicker::before {
+    content: "";
+    @apply h-px w-8 bg-ink/30;
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-12 items-center justify-center gap-4 rounded-full bg-forest px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-lime transition-all duration-500 hover:bg-terracotta hover:text-white disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-ink/20 px-6 py-3.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-ink transition-all duration-500 hover:border-ink hover:bg-ink hover:text-bone;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-ink/15 bg-white/55 px-4 py-3.5 text-sm text-ink outline-none transition placeholder:text-ink/30 hover:border-ink/30 focus:border-moss focus:bg-white;
+  }
+
+  .stepper {
+    @apply grid h-9 w-9 place-items-center rounded-full border border-ink/20 transition hover:bg-forest hover:text-lime;
+  }
+
+  .gallery-arrow {
+    @apply grid h-11 w-11 place-items-center rounded-full border border-white/35 bg-[#10241c]/25 text-white backdrop-blur-sm transition-all duration-300 hover:bg-white hover:text-ink;
+  }
+
+  .footer-label {
+    @apply text-[9px] font-semibold uppercase tracking-[0.2em] text-white/35;
+  }
+
+  .footer-link {
+    @apply transition-all duration-300 hover:translate-x-1 hover:text-lime;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.image-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 25%, rgba(255,255,255,0.35) 45%, transparent 65%);
+  transform: translateX(-100%);
+  animation: shimmer 1.7s infinite;
+}
+
+@keyframes shimmer {
+  to { transform: translateX(100%); }
+}
+
+@media (max-width: 640px) {
+  input[type="date"] {
+    min-width: 0;
+    font-size: 11px;
+  }
+
+  canvas {
+    touch-action: pan-y;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
